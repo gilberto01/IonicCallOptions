@@ -1,38 +1,32 @@
 package cordova.plugin.calloptions;
 
-import org.apache.cordova.CallbackContext;
-import org.apache.cordova.CordovaInterface;
 import org.apache.cordova.CordovaPlugin;
-import org.apache.cordova.CordovaWebView;
-import org.apache.cordova.PluginResult;
-import org.apache.cordova.PluginResult.Status;
-import org.json.JSONObject;
+import org.apache.cordova.CallbackContext;
+
 import org.json.JSONArray;
 import org.json.JSONException;
+import org.json.JSONObject;
 
-import android.util.Log;
-
-import java.util.Date;
 /**
  * This class echoes a string called from JavaScript.
  */
 public class CallOptions extends CordovaPlugin {
-    private static final String TAG = "MiPlugin";
 
-    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
-      super.initialize(cordova, webView);
-  
-      Log.d(TAG, "Inicializando MiPlugin");
+    @Override
+    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
+        if (action.equals("CheckNumber")) {
+            String number = args.getString(0);
+            this.CheckNumber(number, callbackContext);
+            return true;
+        }
+        return false;
     }
-  
-    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-      if(action.equals("saludar")) {
-        // An example of returning data back to the web layer
-         String phrase = args.getString(0);
-        // Echo back the first argument      
-        final PluginResult result = new PluginResult(PluginResult.Status.OK, "Hola todo el..."+phrase);
-        callbackContext.sendPluginResult(result);
-      }
-      return true;
+
+    private void CheckNumber(String number, CallbackContext callbackContext) {
+        if (number != null && number.length() > 0) {
+            callbackContext.success(number);
+        } else {
+            callbackContext.error("Expected one non-empty string argument.");
+        }
     }
 }

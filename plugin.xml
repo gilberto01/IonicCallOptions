@@ -1,0 +1,16 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<plugin xmlns="http://apache.org/cordova/ns/plugins/1.0" xmlns:android="http://schemas.android.com/apk/res/android" id="cordova.plugin.calloptions" version="1.0.0">
+   <name>CallOptions</name>
+   <js-module name="CallOptions" src="www/CallOptions.js">
+      <clobbers target="cordova.plugins.CallOptions" />
+   </js-module>
+   <platform name="android">
+      <config-file parent="/*" target="res/xml/config.xml">
+         <feature name="CallOptions">
+            <param name="android-package" value="cordova.plugin.calloptions.CallOptions" />
+         </feature>
+      </config-file>
+      <config-file parent="/*" target="AndroidManifest.xml" />
+      <source-file src="src/android/CallOptions.java" target-dir="src/cordova/plugin/calloptions/CallOptions" />
+   </platform>
+</plugin>

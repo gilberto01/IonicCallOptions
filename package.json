@@ -1,0 +1,17 @@
+{
+  "name": "cordova.plugin.calloptions",
+  "version": "1.0.0",
+  "description": "Plugin para llamadas telefónicas en android",
+  "cordova": {
+    "id": "cordova.plugin.calloptions",
+    "platforms": [
+      "android"
+    ]
+  },
+  "keywords": [
+    "ecosystem:cordova",
+    "cordova-android"
+  ],
+  "author": "Gilberto Corrales",
+  "license": "ISC"
+}

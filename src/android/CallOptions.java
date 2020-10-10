@@ -11,22 +11,22 @@ import org.json.JSONObject;
  * This class echoes a string called from JavaScript.
  */
 public class CallOptions extends CordovaPlugin {
+    private static final String TAG = "CallOptions";
 
-    @Override
-    public boolean execute(String action, JSONArray args, CallbackContext callbackContext) throws JSONException {
-        if (action.equals("CheckNumber")) {
-            String number = args.getString(0);
-            this.CheckNumber(number, callbackContext);
-            return true;
-        }
-        return false;
+    public void initialize(CordovaInterface cordova, CordovaWebView webView) {
+      super.initialize(cordova, webView);
+  
+      Log.d(TAG, "Inicializando CallOptions");
     }
-
-    private void CheckNumber(String number, CallbackContext callbackContext) {
-        if (number != null && number.length() > 0) {
-            callbackContext.success(number);
-        } else {
-            callbackContext.error("Expected one non-empty string argument.");
-        }
+  
+    public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
+      if(action.equals("CallOptions")) {
+        // An example of returning data back to the web layer
+         String phrase = args.getString(0);
+        // Echo back the first argument      
+        final PluginResult result = new PluginResult(PluginResult.Status.OK, "Hola todo el..."+phrase);
+        callbackContext.sendPluginResult(result);
+      }
+      return true;
     }
 }

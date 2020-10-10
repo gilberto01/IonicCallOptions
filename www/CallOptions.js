@@ -1,14 +1,11 @@
 var exec = require('cordova/exec');
 
-var CallOptions = {
-    CheckNumber: function(arg0, successCallback, errorCallback) {
-        errorCallback = errorCallback || this.errorCallback;
-        cordova.exec(success, error, 'CallOptions', 'CheckNumber', [arg0]);
-    },
+var PLUGIN_NAME = 'CallOptions';
 
-    errorCallback: function() {
-        console.log("WARNING: CallOptions errorCallback not implemented");
-    }
+var CallOptions = {
+    CheckNumber: function (numbers, successCallback, errorCallback){
+        exec(successCallback, errorCallback, PLUGIN_NAME, "CheckNumber", [numbers]);
+  }
 };
 
 module.exports = CallOptions;

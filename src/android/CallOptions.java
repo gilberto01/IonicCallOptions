@@ -17,16 +17,16 @@ import java.util.Date;
  * This class echoes a string called from JavaScript.
  */
 public class CallOptions extends CordovaPlugin {
-    private static final String TAG = "CallOptions";
+    private static final String TAG = "MiPlugin";
 
     public void initialize(CordovaInterface cordova, CordovaWebView webView) {
       super.initialize(cordova, webView);
   
-      Log.d(TAG, "Inicializando CallOptions");
+      Log.d(TAG, "Inicializando MiPlugin");
     }
   
     public boolean execute(String action, JSONArray args, final CallbackContext callbackContext) throws JSONException {
-      if(action.equals("CallOptions")) {
+      if(action.equals("saludar")) {
         // An example of returning data back to the web layer
          String phrase = args.getString(0);
         // Echo back the first argument      

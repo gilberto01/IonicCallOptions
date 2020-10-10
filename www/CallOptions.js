@@ -1,11 +1,11 @@
 var exec = require('cordova/exec');
 
-var PLUGIN_NAME = 'CallOptions';
+var PLUGIN_NAME = 'MiPlugin';
 
-var CallOptions = {
-    CheckNumber: function (numbers, successCallback, errorCallback){
-        exec(successCallback, errorCallback, PLUGIN_NAME, "CheckNumber", [numbers]);
+var MiPlugin = {
+  saludo: function (name, successCallback, errorCallback){
+        exec(successCallback, errorCallback, PLUGIN_NAME, "saludar", [name]);
   }
 };
 
-module.exports = CallOptions;
+module.exports = MiPlugin;

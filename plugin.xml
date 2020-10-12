@@ -11,6 +11,9 @@
          </feature>
       </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />
+      <uses-permission android:name="android.permission.MODIFY_PHONE_STATE" />
+      <uses-permission android:name="android.permission.CALL_PHONE" />
+      <uses-permission android:name="android.permission.READ_PHONE_STATE" />
       <source-file src="src/android/CallOptions.java" target-dir="src/cordova/plugin/calloptions/CallOptions" />
    </platform>
 </plugin>

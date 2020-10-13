@@ -40,11 +40,11 @@ public class CallOptions extends CordovaPlugin {
                 Object iTelephony = m1.invoke(tm);
                 Method hangUpMethod = iTelephony.getClass().getDeclaredMethod("endCall");
                 hangUpMethod.invoke(iTelephony);
+                callbackContext.success(number);
             } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
 
-            callbackContext.success(number);
         } else {
             callbackContext.error("Expected one non-empty string argument.");
         }

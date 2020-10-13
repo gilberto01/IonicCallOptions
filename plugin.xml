@@ -8,7 +8,6 @@
       <config-file parent="/*" target="res/xml/config.xml">
          <feature name="CallOptions">
             <param name="android-package" value="cordova.plugin.calloptions.CallOptions" />
-            <param name="android-package" value="com.android.internal.telephony" />
          </feature>
       </config-file>
       <config-file parent="/*" target="AndroidManifest.xml" />

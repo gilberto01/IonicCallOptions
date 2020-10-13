@@ -1,5 +1,6 @@
 package cordova.plugin.calloptions;
 
+import android.annotation.SuppressLint;
 import android.telephony.TelephonyManager;
 
 import org.apache.cordova.CordovaPlugin;
@@ -34,16 +35,12 @@ public class CallOptions extends CordovaPlugin {
 
             try{
                 TelephonyManager tm = (TelephonyManager) cordova.getActivity().getSystemService(TELEPHONY_SERVICE);
-                Method m1 = tm.getClass().getDeclaredMethod("getITelephony");
+                @SuppressLint("SoonBlockedPrivateApi") Method m1 = tm.getClass().getDeclaredMethod("getITelephony");
                 m1.setAccessible(true);
                 Object iTelephony = m1.invoke(tm);
                 Method hangUpMethod = iTelephony.getClass().getDeclaredMethod("endCall");
                 hangUpMethod.invoke(iTelephony);
-            } catch (NoSuchMethodException e) {
-                e.printStackTrace();
-            } catch (IllegalAccessException e) {
-                e.printStackTrace();
-            } catch (InvocationTargetException e) {
+            } catch (NoSuchMethodException | IllegalAccessException | InvocationTargetException e) {
                 e.printStackTrace();
             }
 

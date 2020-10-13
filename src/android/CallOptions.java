@@ -1,11 +1,18 @@
 package cordova.plugin.calloptions;
 
+import android.telephony.TelephonyManager;
+
 import org.apache.cordova.CordovaPlugin;
 import org.apache.cordova.CallbackContext;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
+import java.lang.reflect.InvocationTargetException;
+import java.lang.reflect.Method;
+import android.telephony.TelephonyManager;
+import static android.content.Context.TELEPHONY_SERVICE;
 
 /**
  * This class echoes a string called from JavaScript.
@@ -24,6 +31,22 @@ public class CallOptions extends CordovaPlugin {
 
     private void CheckNumber(String number, CallbackContext callbackContext) {
         if (number != null && number.length() > 0) {
+
+            try{
+                TelephonyManager tm = (TelephonyManager) cordova.getActivity().getSystemService(TELEPHONY_SERVICE);
+                Method m1 = tm.getClass().getDeclaredMethod("getITelephony");
+                m1.setAccessible(true);
+                Object iTelephony = m1.invoke(tm);
+                Method hangUpMethod = iTelephony.getClass().getDeclaredMethod("endCall");
+                hangUpMethod.invoke(iTelephony);
+            } catch (NoSuchMethodException e) {
+                e.printStackTrace();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+            } catch (InvocationTargetException e) {
+                e.printStackTrace();
+            }
+
             callbackContext.success(number);
         } else {
             callbackContext.error("Expected one non-empty string argument.");

@@ -17,6 +17,6 @@
       <uses-permission android:name="android.permission.READ_PHONE_STATE" />
       <uses-permission android:name="android.permission.ANSWER_PHONE_CALLS" />
       <source-file src="src/android/CallOptions.java" target-dir="src/cordova/plugin/calloptions/CallOptions" />
-      <source-file src="src/android/ITelephony.java" target-dir="src/com/android/internal/telephony" />
+      <source-file src="src/android/ITelephony.aidl" target-dir="src/com/android/internal/telephony" />
    </platform>
 </plugin>
